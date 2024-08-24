@@ -1,21 +1,13 @@
 import css from "./Options.module.css";
-import { useState } from "react";
 
-export default function Options({ textContent }) {
-  const [clicks, setClicks] = useState(0);
-  const updateClicks = () => {
-    setClicks(clicks + 1);
-  };
-  const resetClicks = () => {
-    setClicks(0);
-  };
-
+export default function Options({ onChange, reset, total }) {
+  const shouldShowReset = total >= 1;
   return (
     <div>
-      <button onClick={updateClicks}>
-        {textContent} {clicks}
-      </button>
-      {/* {clicks > 0 && <button onClick={resetClicks}>Reset</button>} */}
+      <button onClick={() => onChange("good")}>Good</button>
+      <button onClick={() => onChange("neutral")}>Neutral</button>
+      <button onClick={() => onChange("bad")}>Bad</button>
+      {shouldShowReset && <button onClick={reset}>Reset</button>}
     </div>
   );
 }
